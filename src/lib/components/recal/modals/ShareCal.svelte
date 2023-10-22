@@ -5,5 +5,7 @@ export let showModal: boolean = false;
 </script>
 
 <StdModal title="Share Schedule" stdClose={true} {showModal}>
-
+    <div slot="main">
+        
+    </div>
 </StdModal>
