@@ -148,7 +148,7 @@ const createIcal = async () => {
 
 <StdModal title="Export Schedule" stdClose={true} {showModal}>
     <div class="flex flex-col space-y-2 md:space-y-4" slot="main">
-        <p class="text-sm">
+        <p class="text-normal">
             This will create a new iCal file with all your confirmed courses, 
             which you can add to your calendar app of choice by 
             downloading the file or using the link.
