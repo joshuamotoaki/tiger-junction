@@ -14,7 +14,7 @@ $: ({ supabase, session } = data);
 $: dark = $darkTheme;
 
 onMount(() => {
-    $isMobile = window.innerWidth < 600;
+    $isMobile = window.innerWidth < 640;
 
     const {
         data: { subscription }
