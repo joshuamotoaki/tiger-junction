@@ -4,7 +4,6 @@ import { createEventDispatcher } from "svelte";
 export let styles: string = "";
 
 const dispatch = createEventDispatcher();
-console.log(styles);
 </script>
 
 <button style={styles}
