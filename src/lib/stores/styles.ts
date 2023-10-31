@@ -40,6 +40,9 @@ export const calColors = {
     set: (value: CalColors) => {
         ccSet(value);
         localStorage.setItem("calColors", JSON.stringify(value));
+    },
+    getString: (scheme: keyof CalColors) => {
+        return calculateCssVars(scheme);
     }
 }
 
