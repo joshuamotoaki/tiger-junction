@@ -7,23 +7,47 @@ import { fetchUserSchedules, populatePools } from "$lib/scripts/ReCal+/fetchDb";
 import { isMobile, showCal } from "$lib/stores/mobile";
 import { rawCourseData, ready, schedules, searchCourseData } from "$lib/stores/recal.js";
 import { pinnedCourses, savedCourses } from "$lib/stores/rpool.js";
+import { sectionData, type SectionData } from "$lib/stores/rsections.js";
 import type { CourseData } from "$lib/types/dbTypes.js";
 import { onMount } from "svelte";
 
 export let data;
 
 onMount(async () => {
-    rawCourseData.update(x => {
-        let cur: CourseData[] = (data.body as CourseData[]).map(y => {
-            let adj_evals = (y.num_evals + 1) * 1.5;
-            y.adj_rating = y.rating !== null && y.num_evals !== null ?
-            Math.round(((y.rating * (adj_evals)) + 5)/((adj_evals) + 2) * 100)/100
-            : 0;
-            return y;
+    if (!rawCourseData.check(CURRENT_TERM_ID)) {
+        // Add courses to rawCourseData
+        let rawCourses = await fetch("/api/client/courses/" + CURRENT_TERM_ID);
+        let courses: CourseData[] = await rawCourses.json();
+
+        rawCourseData.update(x => {
+        let cur: CourseData[] = courses.map(y => {
+                let adj_evals = (y.num_evals + 1) * 1.5;
+                y.adj_rating = y.rating !== null && y.num_evals !== null ?
+                Math.round(((y.rating * (adj_evals)) + 5)/((adj_evals) + 2) * 100)/100
+                : 0;
+                return y;
+            })
+            x[CURRENT_TERM_ID] = cur;
+            return x;
         })
-        x[CURRENT_TERM_ID] = cur;
-        return x;
-    })
+
+        // Sort through sections and add to sectionData
+        let rawSections = await fetch("/api/client/sections/" + CURRENT_TERM_ID);
+        let sections: SectionData[] = await rawSections.json();
+
+        let termSec = $sectionData[CURRENT_TERM_ID];
+        for (let i = 0; i < sections.length; i++) {
+            let sec = sections[i];
+            let courseId = sec.course_id;
+
+            // Add course to sectionData 
+            if (!termSec[courseId]) {
+                termSec[courseId] = [];
+            }
+            termSec[courseId].push(sec);
+        }
+    }
+
     searchCourseData.reset(CURRENT_TERM_ID);
     
     await fetchUserSchedules(data.supabase, CURRENT_TERM_ID);

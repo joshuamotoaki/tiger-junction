@@ -1,9 +1,9 @@
 <script lang="ts">
 import { currentPage } from "$lib/stores/state";
 import { calColors, calculateCssVars } from "$lib/stores/styles";
-    import { redirect } from "@sveltejs/kit";
 import NavButton from "./NavButton.svelte";
-    import { modalStore } from "$lib/stores/modal";
+import { modalStore } from "$lib/stores/modal";
+import { goto } from "$app/navigation";
 
 
 $: cssVarStyles = calculateCssVars("0", $calColors);
@@ -12,7 +12,7 @@ $: cssVarStyles = calculateCssVars("0", $calColors);
  * Change the current page
  */
 const handlePageChange = (url: string) => {
-    redirect(300, "/" + url);
+    goto(url);
     currentPage.set(url);
     console.log("Changed page to " + url);
 }
