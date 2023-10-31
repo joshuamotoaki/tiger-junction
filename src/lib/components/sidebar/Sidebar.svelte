@@ -4,6 +4,7 @@ import { calColors, calculateCssVars } from "$lib/stores/styles";
 import NavButton from "./NavButton.svelte";
 import { modalStore } from "$lib/stores/modal";
 import { goto } from "$app/navigation";
+import { darkTheme } from "$lib/stores/state";
 
 
 $: cssVarStyles = calculateCssVars("0", $calColors);
@@ -20,17 +21,39 @@ const handlePageChange = (url: string) => {
 
 <nav style={cssVarStyles} 
 class="sm:h-full sm:w-12 sm:ml-2 flex sm:flex-col flex-row
-h-12 w-full items-center py-1 justify-between 
+h-12 w-full items-center py-2 justify-between 
 bg-white dark:bg-slate-900 text-slate-900
 dark:text-white border-2 border-slate-600/30
 dark:border-slate-200/60 rounded-xl overflow-clip">
 
-<div>
+<div class="flex flex-col items-center">
     <img src="tjlogolarge.png" alt="Tiger Junction Logo"
     class="w-10 h-10">
 
+    <button on:click={() => $darkTheme = !$darkTheme}
+    class="btn-circ w-8 h-8 my-2">
+            {#if $darkTheme}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+            class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
+            </svg>              
+            {:else}
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+            class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v2.25m6.364.386l-1.591 1.591M21 12h-2.25m-.386 6.364l-1.591-1.591M12 18.75V21m-4.773-4.227l-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z" />
+            </svg>              
+            {/if}
+    </button>
+
     <div class="bg-slate-100 dark:bg-slate-800
     p-1 rounded-md gap-1 flex sm:flex-col flex-row">
+        <NavButton 
+        on:click={() => handlePageChange("home")}
+        active={$currentPage === "home"}>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+            </svg>          
+        </NavButton>
         <NavButton 
         on:click={() => handlePageChange("recalplus")}
         active={$currentPage === "recalplus"}>
@@ -67,5 +90,13 @@ dark:border-slate-200/60 rounded-xl overflow-clip">
 </nav>
 
 <style lang="postcss">
+.btn-circ {
+    @apply rounded-full p-1 border-slate-600/30 border-2 
+    dark:border-slate-200/60 flex items-center justify-center;
+}
 
+.btn-circ:hover {
+    @apply bg-slate-100 border-slate-600/40
+    dark:bg-slate-700 dark:border-slate-200/90 duration-150;
+}
 </style>

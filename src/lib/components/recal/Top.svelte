@@ -120,17 +120,6 @@ dark:border-slate-200/60">
             </button>
             {/if}
 
-            <button on:click={() => $darkTheme = !$darkTheme}
-                class="btn-circ">
-                    {#if $darkTheme}
-                        <img src={moonIcon} alt="Dark Mode Icon" 
-                        class="btn-icon">
-                    {:else}
-                        <img src={sunIcon} alt="Light Mode Icon" 
-                        class="btn-icon">
-                    {/if}
-            </button>
-
             <button class="btn-circ"
             on:click={() => modalStore.open("rutils", { clear: true})}>
                 <img src={utilsIcon} alt="Utils Icon" class="btn-icon">
