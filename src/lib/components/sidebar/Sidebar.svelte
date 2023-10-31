@@ -1,12 +1,11 @@
 <script lang="ts">
-import { currentPage } from "$lib/stores/state";
 import { calColors, calculateCssVars } from "$lib/stores/styles";
 import NavButton from "./NavButton.svelte";
 import { modalStore } from "$lib/stores/modal";
 import { goto } from "$app/navigation";
 import { darkTheme } from "$lib/stores/state";
 
-
+export let currentApp: string = "";
 $: cssVarStyles = calculateCssVars("0", $calColors);
 
 /**
@@ -14,8 +13,6 @@ $: cssVarStyles = calculateCssVars("0", $calColors);
  */
 const handlePageChange = (url: string) => {
     goto(url);
-    currentPage.set(url);
-    console.log("Changed page to " + url);
 }
 </script>
 
@@ -49,28 +46,28 @@ dark:border-slate-200/60 rounded-xl overflow-clip">
     p-1 rounded-md gap-1 flex sm:flex-col flex-row">
         <NavButton 
         on:click={() => handlePageChange("home")}
-        active={$currentPage === "home"}>
+        active={currentApp === "home"}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
             </svg>          
         </NavButton>
         <NavButton 
         on:click={() => handlePageChange("recalplus")}
-        active={$currentPage === "recalplus"}>
+        active={currentApp === "recalplus"}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
             </svg>
         </NavButton>
         <NavButton 
         on:click={() => handlePageChange("coursegenie")}
-        active={$currentPage === "coursegenie"}>
+        active={currentApp === "coursegenie"}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
             </svg>          
         </NavButton>
         <NavButton 
         on:click={() => handlePageChange("reqtree")}
-        active={$currentPage === "reqtree"}>
+        active={currentApp === "reqtree"}>
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 6.75V15m6-6v8.25m.503 3.498l4.875-2.437c.381-.19.622-.58.622-1.006V4.82c0-.836-.88-1.38-1.628-1.006l-3.869 1.934c-.317.159-.69.159-1.006 0L9.503 3.252a1.125 1.125 0 00-1.006 0L3.622 5.689C3.24 5.88 3 6.27 3 6.695V19.18c0 .836.88 1.38 1.628 1.006l3.869-1.934c.317-.159.69-.159 1.006 0l4.994 2.497c.317.158.69.158 1.006 0z" />
             </svg>

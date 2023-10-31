@@ -1,7 +1,5 @@
 import { writable, type Writable } from "svelte/store";
 
-export const currentPage = writable("home");
-
 const { subscribe, update, set: setDark }: Writable<boolean> = 
     writable(
         typeof window !== "undefined" 

@@ -5,8 +5,6 @@ import { isMobile } from "$lib/stores/mobile";
 
 export let data;
 $: currentApp = data.currentApp || "";
-
-let sidebar_show = false;
 </script>
 
 <ModalLib supabase={data.supabase} />
@@ -14,7 +12,7 @@ let sidebar_show = false;
 bg-white dark:bg-black">
     {#if !$isMobile}
     <div class="my-2">
-        <Sidebar />
+        <Sidebar {currentApp} />
     </div>
     <slot />
     {:else}
