@@ -14,6 +14,7 @@ import RecalPalettes from "../recal/modals/RecalPalettes.svelte";
 import RecalUtils from "../recal/modals/RecalUtils.svelte";
 import RecalStats from "../recal/modals/RecalStats.svelte";
 import SiteTimer from "../recal/modals/SiteTimer.svelte";
+import Settings from "./Settings.svelte";
 
 export let supabase: SupabaseClient;
 
@@ -69,5 +70,9 @@ export let supabase: SupabaseClient;
 
 {#if $modalStore === "rtimer"}
 <SiteTimer showModal={$modalStore === "rtimer"} />
+{/if}
+
+{#if $modalStore === "settings"}
+<Settings showModal={$modalStore === "settings"} />
 {/if}
 
