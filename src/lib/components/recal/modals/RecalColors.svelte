@@ -41,12 +41,11 @@ onMount(() => {
 })
 </script>
 
-<StdModal title="Color Settings" {showModal} stdClose={false}>
+<StdModal title="Style Settings" {showModal} stdClose={false}>
     <div class="flex flex-col gap-2" slot="main">
 
-        <!-- Card Colors -->
         <div class="settings-area" id="options">
-            <h2 class="text-lg font-bold mb-2">Card Colors</h2>
+            <h2 class="text-lg font-bold mb-2">Colors</h2>
             <div class="flex flex-wrap gap-2 justify-center">
                 {#each Object.keys($calColors) as color}
                     <div class="flex flex-col items-center">
