@@ -304,24 +304,14 @@ on:inview_enter={(e) => isInView = e.detail.inView}>
         @apply bg-green-500 dark:bg-green-700;
     }
 
-    .add-button:hover img {
-        @apply invert;
-    }
 
-    .pin-button:hover {
+    /* .pin-button:hover {
         @apply bg-blue-500 dark:bg-blue-700;
     }
-
-    .pin-button:hover img {
-        @apply invert;
-    }
+ */
 
     .remove-button:hover {
         @apply bg-red-500 dark:bg-red-700;
-    }
-
-    .remove-button:hover img {
-        @apply invert;
     }
 
 /* !-- --! */
