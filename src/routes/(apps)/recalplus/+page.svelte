@@ -97,8 +97,5 @@ bg-white dark:bg-black max-h-screen overflow-clip">
 </div>
 
 <style lang="postcss">
-/* On mobile, one toggles the views back and forth */
-#main {
     
-}
 </style>
