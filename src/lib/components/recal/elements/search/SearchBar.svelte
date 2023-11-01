@@ -63,14 +63,14 @@ const triggerSearch = () => {
 }
 
 .adv-search {
-  @apply h-10 w-10 flex justify-center items-center duration-150
+  @apply h-10 w-10 flex justify-center items-center 
     border-slate-600/30 border-2 dark:border-slate-200/60
     hover:bg-slate-100 dark:hover:bg-slate-800;
     border-radius: 50%;
 }
 
 .adv-search:hover {
-    animation: rainbow-border 2s linear infinite;
+    animation: rainbow-border 2s linear infinite duration-150;
 }
 
 @keyframes rainbow-border {

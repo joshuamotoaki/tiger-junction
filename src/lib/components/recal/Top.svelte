@@ -71,7 +71,7 @@ dark:border-slate-200/60">
     <div class="justify-between flex">
         <div class="bg-slate-100 dark:bg-slate-800
          flex gap-2 w-fit p-1 rounded-md h-8 mb-1">
-            <button class="card termchoice" 
+            <button class="card {$currentTerm === 1232 ? "" : "termchoice"}" 
             class:selected={$currentTerm === 1232}
             on:click={() => handleTermChange(1232)}>
                 {#if $isMobile}
@@ -80,7 +80,7 @@ dark:border-slate-200/60">
                 Fall 2022
                 {/if}
             </button>
-            <button class="card termchoice" 
+            <button class="card {$currentTerm === 1234 ? "" : "termchoice"}" 
             class:selected={$currentTerm === 1234}
             on:click={() => handleTermChange(1234)}>
                 {#if $isMobile}
@@ -89,7 +89,7 @@ dark:border-slate-200/60">
                 Spring 2023
                 {/if}
             </button>
-            <button class="card termchoice" 
+            <button class="card {$currentTerm === 1242 ? "" : "termchoice"}" 
             class:selected={$currentTerm === 1242}
             on:click={() => handleTermChange(1242)}>
                 {#if $isMobile}
@@ -122,7 +122,7 @@ dark:border-slate-200/60">
             </button>
 
             {#if !$isMobile}
-                <button class="p-2 border-slate-600/30 border-2 duration-150
+                <button class="p-2 border-slate-600/30 border-2 hover:duration-150
                 dark:border-slate-200/60 h-8
                 hover:bg-slate-100 hover:border-slate-600/40
                 hover:dark:bg-slate-700 hover:dark:border-slate-200/90
@@ -221,7 +221,7 @@ dark:border-slate-200/60">
 }
 
 .termchoice:hover {
-    @apply bg-slate-200 dark:bg-slate-700 duration-150;
+    @apply dark:bg-slate-700 bg-slate-200 duration-150;
 }
 
 .selected {
@@ -235,13 +235,13 @@ dark:border-slate-200/60">
 }
 
 .btn-circ {
-    @apply rounded-full p-1 border-slate-600/30 border-2 duration-150
+    @apply rounded-full p-1 border-slate-600/30 border-2 
     dark:border-slate-200/60 h-8 w-8;
 }
 
 .btn-circ:hover {
     @apply bg-slate-100 border-slate-600/40
-    dark:bg-slate-700 dark:border-slate-200/90;
+    dark:bg-slate-700 dark:border-slate-200/90 duration-150;
 }
 
 .btn-icon {
