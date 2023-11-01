@@ -301,7 +301,7 @@ on:inview_enter={(e) => isInView = e.detail.inView}>
 /* !-- Refactor --! */
 
     .add-button:hover {
-        @apply bg-green-500 dark:bg-green-700;
+        @apply bg-std-green dark:bg-std-darkGreen;
     }
 
 
@@ -311,7 +311,7 @@ on:inview_enter={(e) => isInView = e.detail.inView}>
  */
 
     .remove-button:hover {
-        @apply bg-red-500 dark:bg-red-700;
+        @apply bg-std-red dark:bg-std-darkRed;
     }
 
 /* !-- --! */
