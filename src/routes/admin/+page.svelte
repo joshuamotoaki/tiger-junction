@@ -2,7 +2,6 @@
 import { enhance } from "$app/forms";
 import { goto } from "$app/navigation";
 import LightButton from "$lib/components/general/LightButton.svelte";
-// import homeIcon from "$lib/img/icons/homeicon.svg";
 import { TERM_MAP } from "$lib/constants";
 
 export let data;

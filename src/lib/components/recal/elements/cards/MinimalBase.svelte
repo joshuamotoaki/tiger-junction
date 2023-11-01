@@ -1,8 +1,5 @@
 <script lang="ts">
 import type { CourseData } from "$lib/types/dbTypes";
-import plusIcon from "$lib/img/icons/addicon.svg"
-// import pinIcon from "$lib/img/icons/pinicon.svg"
-import removeIcon from "$lib/img/icons/subtractionicon.svg"
 import { slide } from "svelte/transition";
 import { currentSchedule, currentTerm, hoveredCourse, searchSettings } from "$lib/stores/recal";
 import { getLinks } from "$lib/scripts/ReCal+/getLinks";
@@ -193,8 +190,10 @@ on:inview_enter={(e) => isInView = e.detail.inView}>
                 z-50 h-full w-full flex items-center justify-center
                 duration-100"
                 on:click={() => cf.removeCourseFromSaved(supabase, course)}>
-                    <img src={removeIcon} alt="Remove" 
-                    class="ic" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                    class="ic">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                    </svg>   
                 </button>
 
             {:else if category === "pinned"}
@@ -203,16 +202,20 @@ on:inview_enter={(e) => isInView = e.detail.inView}>
                 z-50 h-full w-full flex items-center justify-center
                 duration-100"
                 on:click={() => cf.saveCourseFromPinned(supabase, course)}>
-                    <img src={plusIcon} alt="Save" 
-                    class="ic" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                    class="ic">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>  
                 </button>
 
                 <button class="remove-button
                 z-50 h-full w-full flex items-center justify-center
                 duration-100"
                 on:click={() => cf.removeCourseFromPinned(supabase, course)}>
-                    <img src={removeIcon} alt="Remove" 
-                    class="ic" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                    class="ic">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15" />
+                    </svg>                  
                 </button>
 
             {:else}
@@ -228,8 +231,10 @@ on:inview_enter={(e) => isInView = e.detail.inView}>
                 z-50 h-full w-full flex items-center justify-center
                 duration-100"
                 on:click={() => cf.saveCourseFromSearch(supabase, course)}>
-                    <img src={plusIcon} alt="Add" 
-                    class="ic" />
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                    class="ic">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                    </svg>                  
                 </button>
             {/if}
         </div> 
@@ -334,6 +339,6 @@ on:inview_enter={(e) => isInView = e.detail.inView}>
 }
 
 .ic {
-    @apply w-5 h-5 invert-[.5] dark:invert-[.7]
+    @apply w-5 h-5 text-slate-500 dark:text-slate-300;
 }
 </style>
