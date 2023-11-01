@@ -12,13 +12,13 @@ $: currentApp = data.currentApp || "";
 bg-white dark:bg-black">
     {#if !$isMobile}
     <div class="my-2">
-        <Sidebar {currentApp} />
+        <Sidebar {currentApp} supabase={data.supabase} />
     </div>
     <slot />
     {:else}
     <slot />
     <div class="px-2 pb-2">
-        <Sidebar />
+        <Sidebar supabase={data.supabase} />
     </div>
     {/if}
 </div>

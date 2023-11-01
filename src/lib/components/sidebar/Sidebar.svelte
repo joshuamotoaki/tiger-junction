@@ -4,8 +4,11 @@ import NavButton from "./NavButton.svelte";
 import { modalStore } from "$lib/stores/modal";
 import { goto } from "$app/navigation";
 import { darkTheme } from "$lib/stores/state";
+import { toastStore } from "$lib/stores/toast";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 export let currentApp: string = "";
+export let supabase: SupabaseClient;
 $: cssVarStyles = calculateCssVars("0", $calColors);
 
 /**
@@ -75,12 +78,31 @@ dark:border-slate-200/60 rounded-xl overflow-clip">
     </div>
 </div>
     
-<div>
-    <NavButton active={true} styleChoice="1"
+<div class="flex sm:flex-col flex-row gap-1">
+    <NavButton active={true} styleChoice="0"
+    on:click={() => modalStore.open("rcolors", { clear: true })}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M4.098 19.902a3.75 3.75 0 005.304 0l6.401-6.402M6.75 21A3.75 3.75 0 013 17.25V4.125C3 3.504 3.504 3 4.125 3h5.25c.621 0 1.125.504 1.125 1.125v4.072M6.75 21a3.75 3.75 0 003.75-3.75V8.197M6.75 21h13.125c.621 0 1.125-.504 1.125-1.125v-5.25c0-.621-.504-1.125-1.125-1.125h-4.072M10.5 8.197l2.88-2.88c.438-.439 1.15-.439 1.59 0l3.712 3.713c.44.44.44 1.152 0 1.59l-2.879 2.88M6.75 17.25h.008v.008H6.75v-.008z" />
+        </svg>
+    </NavButton>
+    <NavButton active={true} styleChoice="0"
     on:click={() => modalStore.open("settings", { clear: true })}>
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
         </svg>
+    </NavButton>
+    <hr class="my-2" />
+    <NavButton active={true} styleChoice="-1"
+    on:click={async () => {
+        const { error } = await supabase.auth.signOut();
+        if (!error) {
+            toastStore.add("success", "Logged out successfully");
+            goto("/");
+        }
+    }}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+        </svg>      
     </NavButton>
 </div>
 
