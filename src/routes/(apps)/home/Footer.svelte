@@ -6,8 +6,8 @@ $: style = calculateCssVars("-1", $calColors);
 $: buttonStyle = calculateCssVars("0", $calColors);
 </script>
 
-<div id="parent" {style} class="w-full h-16
-rounded-md flex items-center text-lg py-2
+<div id="parent" {style} class="w-full h-14
+rounded-xl flex items-center text-lg py-2
 justify-between px-4 mb-2 shadow-md">
     <div class="flex items-center gap-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

@@ -17,7 +17,7 @@ bg-white dark:bg-black max-h-screen overflow-clip">
     <Header />
 
     <!-- * App Card Link Buttons -->
-    <div class="flex h-24 gap-4 mt-2">
+    <div class="flex h-16 gap-4 mt-2">
         <!-- ReCal+ -->
         <AppCard on:click={() => goto("/recalplus")}
         scheme="5">
@@ -53,8 +53,12 @@ bg-white dark:bg-black max-h-screen overflow-clip">
         </AppCard>
     </div>
 
-    <div class="flex-1">
-
+    <div class="flex-1 border-2 border-slate-600/30
+    dark:border-slate-200/60 my-2 rounded-xl
+    flex items-center justify-center">
+        <h2 class="text-2xl font-light">
+            User Statistics Coming Soon
+        </h2>
     </div>
 
    <Footer />

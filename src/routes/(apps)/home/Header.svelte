@@ -4,8 +4,10 @@ import { calculateCssVars, calColors } from "$lib/stores/styles";
 $: style = calculateCssVars("0", $calColors);
 </script>
 
-<div id="header" {style} class="h-12 rounded-md mt-2 flex items-center
-px-4">
+<div id="header" {style} class="h-12 rounded-xl mt-2 flex items-center
+px-4 gap-2">
+    <img src="tjlogolarge.png" alt="Tiger Junction Logo"
+    class="w-10 h-10">
     <h1 class="text-2xl font-medium">
         Welcome to TigerJunction!
     </h1>
