@@ -3,9 +3,11 @@ import { calColors, calculateCssVars } from "$lib/stores/styles";
 import { EMAIL_LIST_FORM_LINK } from "$lib/constants";
 
 $: style = calculateCssVars("-1", $calColors);
+$: buttonStyle = calculateCssVars("0", $calColors);
 </script>
 
-<div id="parent" {style} class="w-full h-12 bg-red-500 rounded-md flex items-center
+<div id="parent" {style} class="w-full h-16
+rounded-md flex items-center text-lg py-2
 justify-between px-4 mb-2 shadow-md">
     <div class="flex items-center gap-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
@@ -16,7 +18,7 @@ justify-between px-4 mb-2 shadow-md">
         TigerJunction feature releases and other news!
     </div>
     <a href={EMAIL_LIST_FORM_LINK} target="_blank">
-        <button class="btn btn-green">
+        <button style={buttonStyle}>
             Get Updated
         </button>
     </a>
@@ -26,5 +28,20 @@ justify-between px-4 mb-2 shadow-md">
 #parent {
     background-color: var(--bg);
     color: var(--text);
+}
+
+button {
+    background-color: var(--bg);
+    color: var(--text);
+    @apply rounded-md p-2;
+}
+
+button:hover {
+    background-color: var(--bg-hover);
+    transition-duration: 150ms;
+}
+
+button:active {
+    transform: scale(0.95);
 }
 </style>
