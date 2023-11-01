@@ -1,8 +1,7 @@
 <script lang="ts">
-import { calculateCssVars, type CalColors, calColors } from "$lib/stores/styles";
+import { calculateCssVars, calColors } from "$lib/stores/styles";
 
-export let scheme: keyof CalColors = "0";
-$: style = calculateCssVars(scheme, $calColors);
+$: style = calculateCssVars("0", $calColors);
 </script>
 
 <div id="header" {style} class="h-12 rounded-md mt-2 flex items-center

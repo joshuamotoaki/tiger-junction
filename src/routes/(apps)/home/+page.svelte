@@ -1,8 +1,7 @@
 <script lang="ts">
 import { goto } from "$app/navigation";
-import { EMAIL_LIST_FORM_LINK } from "$lib/constants";
-import { calColors } from "$lib/stores/styles";
 import AppCard from "./AppCard.svelte";
+import Footer from "./Footer.svelte";
 import Header from "./Header.svelte";
 
 </script>
@@ -15,7 +14,7 @@ import Header from "./Header.svelte";
 bg-white dark:bg-black max-h-screen overflow-clip">
 
     <!-- * Header -->
-    <Header scheme="0" />
+    <Header />
 
     <!-- * App Card Link Buttons -->
     <div class="flex h-20 gap-4 mt-2">
@@ -57,34 +56,12 @@ bg-white dark:bg-black max-h-screen overflow-clip">
     <div class="flex-1">
 
     </div>
-    <!-- * Info -->
-    <div class="w-full h-12 bg-red-500 rounded-md flex items-center
-    justify-between px-4 mb-2 shadow-md">
-        <div class="flex items-center gap-4">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
-            class="w-6 h-6 hidden md:block">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
-            </svg>                  
-            Join our emailing list to receive updates about
-            TigerJunction feature releases and other news!
-        </div>
-        <a href={EMAIL_LIST_FORM_LINK} target="_blank">
-            <button class="btn btn-green">
-                Get Updated
-            </button>
-        </a>
-    </div>
+
+   <Footer />
     
 
 </div>
 
 <style lang='postcss'>
-.card {
-    @apply p-8 rounded-lg shadow-lg;
-}
-
-.card h1 {
-    @apply font-bold text-2xl mb-2;
-}
 
 </style>
