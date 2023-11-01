@@ -1,6 +1,6 @@
 <script lang="ts">
 import { goto } from "$app/navigation";
-    import { modalStore } from "$lib/stores/modal";
+import { modalStore } from "$lib/stores/modal";
 import AppCard from "./AppCard.svelte";
 import Footer from "./Footer.svelte";
 import Header from "./Header.svelte";

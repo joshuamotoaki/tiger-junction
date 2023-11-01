@@ -5,12 +5,9 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import addIcon from "$lib/img/icons/addicon.svg";
 import logoutIcon from "$lib/img/icons/logouticon.svg";
-import moonIcon from "$lib/img/icons/moonicon.svg";
-import sunIcon from "$lib/img/icons/sunicon.svg";
 import utilsIcon from "$lib/img/icons/utilsicon.svg";
 import duck from "$lib/img/duck.gif";
 
-import { darkTheme } from "$lib/stores/state";
 import { modalStore } from "$lib/stores/modal";
 import { goto } from "$app/navigation";
 import Loader from "../elements/Loader.svelte";
