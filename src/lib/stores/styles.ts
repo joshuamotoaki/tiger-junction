@@ -16,6 +16,13 @@ export type CalColors = {
     "6": string,
 }
 
+export type BgColors = {
+    "bg-light": string,
+    "bg-dark": string,
+    "text-light": string,
+    "text-dark": string,
+}
+
 export const DEFAULT_RCARD_COLORS: CalColors = {
     "-1": "hsl(0, 0%, 66%)", 
     0: "hsl(120, 52%, 75%)", 
@@ -25,6 +32,13 @@ export const DEFAULT_RCARD_COLORS: CalColors = {
     4: "hsl(1, 100%, 69%)",   
     5: "hsl(330, 100%, 80%)", 
     6: "hsl(304, 33%, 70%)", 
+}
+
+export const DEFAULT_BG_COLORS: BgColors = {
+    "bg-light": "hsl(0, 0%, 100%)",
+    "bg-dark": "hsl(0, 0%, 0%)",
+    "text-light": "hsl(0, 0%, 0%)",
+    "text-dark": "hsl(0, 0%, 100%)",
 }
 
 // HSL colors
@@ -40,6 +54,21 @@ export const calColors = {
     set: (value: CalColors) => {
         ccSet(value);
         localStorage.setItem("calColors", JSON.stringify(value));
+    }
+}
+
+const { subscribe: bgSubscribe, update: bgUpdate, set: bgSet }: Writable<BgColors> = writable(
+    typeof window !== "undefined" && localStorage.getItem("bgColors") !== null
+    ? JSON.parse(localStorage.getItem("bgColors") as string)
+    : DEFAULT_BG_COLORS
+);
+
+export const bgColors = {
+    subscribe: bgSubscribe,
+    update: bgUpdate,
+    set: (value: BgColors) => {
+        bgSet(value);
+        localStorage.setItem("bgColors", JSON.stringify(value));
     }
 }
 
