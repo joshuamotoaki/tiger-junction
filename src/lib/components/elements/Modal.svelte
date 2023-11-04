@@ -11,7 +11,9 @@ $: if (dialog && !showModal) dialog.close();
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
-<dialog class="{style} std-area"
+<dialog class="{style} rounded-xl overflow-auto 
+focus:outline-std-blue
+border-2 "
 	bind:this={dialog}
 	on:close={() => modalStore.close()}
 	on:click|self={() => dialog.close()}>

@@ -18,7 +18,7 @@ import { pinnedCourses, savedCourses } from "$lib/stores/rpool";
 import { isMobile, showCal } from "$lib/stores/mobile";
 import { toastStore } from "$lib/stores/toast";
 import { SCHEDULE_CAP } from "$lib/constants";
-import { calColors, calculateCssVars } from "$lib/stores/styles";
+import { bgColors, calColors, calculateCssVars } from "$lib/stores/styles";
 
 export let supabase: SupabaseClient;
 
@@ -68,13 +68,13 @@ const handleAddSchedule = () => {
 
 // Handle theme changes
 $: cssVarStyles = calculateCssVars("0", $calColors);
+
 </script>
 
 <div style={cssVarStyles}
 class="h-20 mt-2 p-1
-rounded-xl overflow-clip bg-white dark:bg-slate-900 text-slate-900
-dark:text-white border-2 border-slate-600/30
-dark:border-slate-200/60">
+rounded-xl overflow-clip border-2 border-slate-600/30
+dark:border-slate-200/60" id="cont">
     <div class="justify-between flex">
         <div class="bg-slate-100 dark:bg-slate-800
          flex gap-2 w-fit p-1 rounded-md h-8 mb-1">

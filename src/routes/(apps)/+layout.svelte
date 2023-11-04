@@ -1,17 +1,29 @@
 <script lang='ts'>
 import ModalLib from "$lib/components/general/ModalLib.svelte";
-import Sidebar from "$lib/components/general/Sidebar.svelte";
+import { bgColors } from "$lib/stores/styles.js";
+
+$: style = bgColors.getString($bgColors);
 
 export let data;
-$: currentApp = data.currentApp || "";
-
-let sidebar_show = false;
 </script>
 
 <ModalLib supabase={data.supabase} />
-<div class="h-screen w-screen flex bg-white dark:bg-black">
-    <!-- <div class="my-2">
-        <Sidebar bind:show={sidebar_show} {currentApp} />
-    </div> -->
+<div class="h-screen w-screen flex bg-std" {style}>
     <slot />
 </div>
+
+<style lang="postcss" global>
+:is(.dark div) {
+    background-color: var(--bg-dark);
+    color: var(--text-dark);
+    border-color: var(--border-dark);
+    outline-color: var(--border-dark);
+}
+
+div {
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    border-color: var(--border-light);
+    outline-color: var(--border-light);
+}
+</style>

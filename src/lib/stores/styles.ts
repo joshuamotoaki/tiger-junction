@@ -19,6 +19,8 @@ export type CalColors = {
 export type BgColors = {
     "bg-light": string,
     "bg-dark": string,
+    "border-light": string,
+    "border-dark": string,
     "text-light": string,
     "text-dark": string,
 }
@@ -37,6 +39,8 @@ export const DEFAULT_RCARD_COLORS: CalColors = {
 export const DEFAULT_BG_COLORS: BgColors = {
     "bg-light": "hsl(0, 0%, 100%)",
     "bg-dark": "hsl(0, 0%, 0%)",
+    "border-light": "hsl(0, 0%, 80%)",
+    "border-dark": "hsl(0, 0%, 20%)",
     "text-light": "hsl(0, 0%, 0%)",
     "text-dark": "hsl(0, 0%, 100%)",
 }
@@ -69,6 +73,10 @@ export const bgColors = {
     set: (value: BgColors) => {
         bgSet(value);
         localStorage.setItem("bgColors", JSON.stringify(value));
+    },
+    getString: (trigger: any) => {
+        const bg = get(bgColors);
+        return Object.entries(bg).map(([key, value]) => `--${key}:${value}`).join(';');
     }
 }
 

@@ -54,8 +54,7 @@ input[type="checkbox"] {
 }
 
 .info {
-    @apply rounded-full px-4 py-2 border-2 border-slate-600/30
-    dark:border-slate-200/30;
+    @apply rounded-full px-4 py-2 border-2;
 }
 
 .info:hover {

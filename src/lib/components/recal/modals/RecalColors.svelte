@@ -102,6 +102,15 @@ onMount(() => {
                         Text
                     </div>
                 </div>
+                <div class="flex flex-col items-center">
+                    <input type="color" 
+                    class="dark:bg-slate-800/50 bg-slate-200/50
+                    w-14 h-8 2 cursor-pointer"
+                    bind:value={rgbBgColors["border-light"]}/>
+                    <div class="text-sm font-light">
+                        Border
+                    </div>
+                </div>
             </div>
 
             <hr class="my-2" />
@@ -124,6 +133,15 @@ onMount(() => {
                     bind:value={rgbBgColors["text-dark"]}/>
                     <div class="text-sm font-light">
                         Text
+                    </div>
+                </div>
+                <div class="flex flex-col items-center">
+                    <input type="color" 
+                    class="dark:bg-slate-800/50 bg-slate-200/50
+                    w-14 h-8 2 cursor-pointer"
+                    bind:value={rgbBgColors["border-dark"]}/>
+                    <div class="text-sm font-light">
+                        Border
                     </div>
                 </div>
             </div>
