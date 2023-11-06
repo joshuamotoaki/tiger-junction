@@ -3,11 +3,18 @@ import { onMount } from "svelte";
 import type { PageData } from "./$types";
 import Main from "./Main.svelte";
 import Top from "./Top.svelte";
+import { get } from "svelte/store";
+import { listings } from "./(scripts)/listingData";
+import type { Listing } from "$lib/types/dbTypes";
 
 export let data: PageData;
 
-onMount(() => {
-    console.log(data);
+onMount(async () => {
+    if (get(listings).length === 0) {
+        const rawListings = await fetch("/api/client/listings");
+        let jsonListings: Listing[] = await rawListings.json();
+        listings.set(jsonListings);
+    }
 });
 </script>
 
