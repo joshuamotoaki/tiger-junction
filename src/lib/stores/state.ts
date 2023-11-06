@@ -8,7 +8,7 @@ const { subscribe, update, set: setDark }: Writable<boolean> =
         && localStorage.getItem("darkMode") === "true"
         );
 
-const darkTheme = {
+export const darkTheme = {
     subscribe,
     update,
     set: (value: boolean) => {
@@ -16,5 +16,3 @@ const darkTheme = {
         localStorage.setItem("darkMode", value.toString());
     }
 }
-
-export { darkTheme }

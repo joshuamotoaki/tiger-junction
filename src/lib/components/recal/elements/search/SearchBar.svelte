@@ -5,7 +5,6 @@ import { searchSettings, searchResults, currentTerm, searchCourseData, currentSc
 import { rMeta } from "$lib/stores/rmeta";
 import { sectionData } from "$lib/stores/rsections";
 import { toastStore } from "$lib/stores/toast";
-import type { RawCourseData } from "$lib/types/dbTypes";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export let supabase: SupabaseClient;

@@ -1,34 +1,31 @@
 <script lang='ts'>
-import { EMAIL_LIST_FORM_LINK } from "$lib/constants";
+import { onMount } from "svelte";
+import type { PageData } from "./$types";
+import Main from "./Main.svelte";
+import Top from "./Top.svelte";
 
+export let data: PageData;
+
+onMount(() => {
+    console.log(data);
+});
 </script>
 
 <svelte:head>
     <title>TigerJunction | CourseGenie</title>
 </svelte:head>
 
-<div class="w-full h-[80vh] flex flex-col justify-center
-items-center gradient-text text-5xl font-bold gap-2 text-center">
-    <span>
-        CourseGenie Coming Soon
-    </span>
-    <a href={EMAIL_LIST_FORM_LINK} target="_blank">
-        <button class="btn-cool text-xl">
-            Get Notified About Updates
-        </button>
-    </a>
+<div class="h-screen flex flex-col flex-1 max-w-[1400px] mx-auto
+bg-white dark:bg-black max-h-screen overflow-clip">
+    <div class="mx-2">
+        <Top supabase={data.supabase} />
+    </div>
+    <!-- Fills bottom area does not cause page scroll -->
+    <div id="main" class="flex flex-1 m-2 max-h-[calc(100vh-80px)]">
+        <Main supabase={data.supabase} />
+    </div>
 </div>
 
 <style lang='postcss'>
-.gradient-text {
-    @apply bg-gradient-to-r from-deepblue-light to-deepblue-dark;
-    -webkit-background-clip: text; /* For Safari */
-    background-clip: text;
-    color: transparent;
-}
 
-.btn-cool {
-    @apply bg-gradient-to-r from-deepblue-light to-deepblue-dark
-    text-white rounded-full px-4 py-2;
-}
 </style>
