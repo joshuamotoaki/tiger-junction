@@ -5,6 +5,8 @@ export const listings: Writable<Listing[]> = writable([]);
 
 export const listingSearchResults: Writable<Listing[]> = writable([]);
 
+export const userYear: Writable<number | null> = writable(null);
+
 export type Plan = {
     id: number,
     title: string,

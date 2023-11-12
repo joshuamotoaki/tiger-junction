@@ -14,7 +14,7 @@ import RecalPalettes from "../recal/modals/RecalPalettes.svelte";
 import RecalUtils from "../recal/modals/RecalUtils.svelte";
 import RecalStats from "../recal/modals/RecalStats.svelte";
 import SiteTimer from "../recal/modals/SiteTimer.svelte";
-    import GenieAdvModal from "../../../routes/(apps)/coursegenie/(components)/GenieAdvModal.svelte";
+import GenieAdvModal from "../../../routes/(apps)/coursegenie/(components)/GenieAdvModal.svelte";
 
 export let supabase: SupabaseClient;
 
