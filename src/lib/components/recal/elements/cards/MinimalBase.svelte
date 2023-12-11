@@ -16,10 +16,11 @@ import { darkTheme } from "$lib/stores/state";
 import { inview } from "svelte-inview";
 import CardLinkButton from "./CardLinkButton.svelte";
 import { CURRENT_TERM_ID } from "$lib/constants";
+import { getContext } from "svelte";
 
 export let course: CourseData;
 export let category: string = "search";
-export let supabase: SupabaseClient;
+let supabase: SupabaseClient = getContext("supabase");
 
 // Course code with spaces before and after all slashes
 let code = course.code.replace(/\//g, " / ");

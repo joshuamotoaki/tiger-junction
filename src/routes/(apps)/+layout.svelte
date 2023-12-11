@@ -6,8 +6,8 @@ export let data;
 
 </script>
 
-<ModalLib supabase={data.supabase} />
+<ModalLib />
 <div class="h-screen w-screen flex flex-col bg-zinc-50 dark:bg-black">
-<Header supabase={data.supabase} />
+<Header />
 <slot />
 </div>

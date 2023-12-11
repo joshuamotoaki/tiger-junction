@@ -7,10 +7,10 @@ import { rMeta } from "$lib/stores/rmeta";
 import { pinnedCourses, savedCourses } from "$lib/stores/rpool";
 import { toastStore } from "$lib/stores/toast";
 import type { SupabaseClient } from "@supabase/supabase-js";
-import { onMount } from "svelte";
+import { getContext, onMount } from "svelte";
 
 export let showModal: boolean = false;
-export let supabase: SupabaseClient;
+let supabase: SupabaseClient = getContext("supabase");
 
 let input: string = "";
 

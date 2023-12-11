@@ -1,10 +1,8 @@
 <script lang="ts">
 import { research, searchResults, searchSettings } from "$lib/stores/recal";
-import type { SupabaseClient } from "@supabase/supabase-js";
 import MinimalBase from "../cards/MinimalBase.svelte";
 import { darkTheme } from "$lib/stores/state";
 
-export let supabase: SupabaseClient;
 $: resetKey = [$searchResults, $darkTheme, $research]
 </script>
 
@@ -23,7 +21,7 @@ $: resetKey = [$searchResults, $darkTheme, $research]
                 {#if $searchSettings.style["Original Style"]}
                     <!-- <ClassicSearch {course} /> -->
                 {:else}
-                    <MinimalBase {supabase} {course} />
+                    <MinimalBase {course} />
                 {/if}
             {/each}
             {/key}

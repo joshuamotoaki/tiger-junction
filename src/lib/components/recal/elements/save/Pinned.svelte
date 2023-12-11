@@ -1,13 +1,13 @@
 <script lang="ts">
 import { currentSchedule, searchSettings } from "$lib/stores/recal";
 import type { SupabaseClient } from "@supabase/supabase-js";
-// import ClassicSearch from "../cards/ClassicSearch.svelte";
 import MinimalBase from "../cards/MinimalBase.svelte";
 import { pinnedCourses } from "$lib/stores/rpool";
 import Modal from "$lib/components/elements/Modal.svelte";
 import { modalStore } from "$lib/stores/modal";
+import { getContext } from "svelte";
 
-export let supabase: SupabaseClient;
+let supabase: SupabaseClient = getContext("supabase");
 export let showModal: boolean = false;
 
 $: pinned = $pinnedCourses[$currentSchedule];

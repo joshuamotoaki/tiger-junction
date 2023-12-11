@@ -1,19 +1,20 @@
 <script lang="ts">
-    import { goto } from "$app/navigation";
-    import { calColors, calculateCssVars } from "$lib/stores/styles";
-    import type { SupabaseClient } from "@supabase/supabase-js";
-    import { darkTheme } from "$lib/stores/state";
-    import { modalStore } from "$lib/stores/modal";
-    import { isMobile } from "$lib/stores/mobile";
+import { goto } from "$app/navigation";
+import { calColors, calculateCssVars } from "$lib/stores/styles";
+import type { SupabaseClient } from "@supabase/supabase-js";
+import { darkTheme } from "$lib/stores/state";
+import { modalStore } from "$lib/stores/modal";
+import { isMobile } from "$lib/stores/mobile";
+import { getContext } from "svelte";
 
-    export let supabase: SupabaseClient;
+let supabase: SupabaseClient = getContext("supabase");
 
-    const handleLogout = async () => {
-        await supabase.auth.signOut();
-        goto("/");
-    }
+const handleLogout = async () => {
+    await supabase.auth.signOut();
+    goto("/");
+}
 
-    $: cssVarStyles = calculateCssVars("0", $calColors);
+$: cssVarStyles = calculateCssVars("0", $calColors);
 
 </script>
 

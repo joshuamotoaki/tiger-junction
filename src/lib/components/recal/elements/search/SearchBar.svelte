@@ -1,14 +1,13 @@
 <script lang="ts">
-import settingsIcon from "$lib/img/icons/settingsicon.svg";
 import { modalStore } from "$lib/stores/modal";
 import { searchSettings, searchResults, currentTerm, searchCourseData, currentSchedule, isResult, hoveredCourse, research, ready, rawCourseData } from "$lib/stores/recal";
 import { rMeta } from "$lib/stores/rmeta";
 import { sectionData } from "$lib/stores/rsections";
 import { toastStore } from "$lib/stores/toast";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import { getContext } from "svelte";
 
-export let supabase: SupabaseClient;
-
+let supabase: SupabaseClient = getContext("supabase");
 let inputBar: HTMLInputElement;
 
 // Number of results, under which sections are added automatically

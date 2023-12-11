@@ -5,9 +5,10 @@ import type { CalBoxParam } from "$lib/types/dbTypes";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { calColors } from "$lib/stores/styles";
 import { rMeta } from "$lib/stores/rmeta";
+import { getContext } from "svelte";
 
 export let params: CalBoxParam;
-export let supabase: SupabaseClient;
+let supabase: SupabaseClient = getContext("supabase");
 const { courseCode, section } = params;
 
 let hovered: boolean = false;

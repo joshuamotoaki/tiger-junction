@@ -4,7 +4,6 @@ import { currentSchedule, currentTerm, ready, retop, schedules, searchCourseData
 import type { SupabaseClient } from "@supabase/supabase-js";
 import duck from "$lib/img/duck.gif";
 
-import { darkTheme } from "$lib/stores/state";
 import { modalStore } from "$lib/stores/modal";
 import { goto } from "$app/navigation";
 import Loader from "../elements/Loader.svelte";
@@ -13,8 +12,9 @@ import { isMobile, showCal } from "$lib/stores/mobile";
 import { toastStore } from "$lib/stores/toast";
 import { SCHEDULE_CAP } from "$lib/constants";
 import { calColors, calculateCssVars } from "$lib/stores/styles";
+import { getContext } from "svelte";
 
-export let supabase: SupabaseClient;
+let supabase: SupabaseClient = getContext("supabase");
 
 // Change the current term
 const handleTermChange = async (term: number) => {

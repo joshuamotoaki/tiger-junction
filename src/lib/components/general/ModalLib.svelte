@@ -1,6 +1,5 @@
 <script lang="ts">
 import { modalStore } from "$lib/stores/modal";
-import type { SupabaseClient } from "@supabase/supabase-js";
 import AdvancedSearch from "../recal/modals/AdvancedSearch.svelte";
 import EditCb from "../recal/modals/EditCb.svelte";
 import ManageCb from "../recal/modals/ManageCb.svelte";
@@ -14,8 +13,6 @@ import RecalPalettes from "../recal/modals/RecalPalettes.svelte";
 import RecalUtils from "../recal/modals/RecalUtils.svelte";
 import RecalStats from "../recal/modals/RecalStats.svelte";
 import SiteTimer from "../recal/modals/SiteTimer.svelte";
-
-export let supabase: SupabaseClient;
 
 </script>
 
@@ -36,19 +33,19 @@ export let supabase: SupabaseClient;
 {/if}
 
 {#if $modalStore === "exportCal"}
-<ExportCal showModal={$modalStore === "exportCal"} {supabase} />
+<ExportCal showModal={$modalStore === "exportCal"} />
 {/if}
 
 {#if $modalStore === "addSchedule"}
-<AddSchedule showModal={$modalStore === "addSchedule"} {supabase} />
+<AddSchedule showModal={$modalStore === "addSchedule"} />
 {/if}
 
 {#if $modalStore === "editSchedule"}
-<EditSchedule showModal={$modalStore === "editSchedule"} {supabase} />
+<EditSchedule showModal={$modalStore === "editSchedule"} />
 {/if}
 
 {#if $modalStore === "pinned"}
-<Pinned showModal={$modalStore === "pinned"} {supabase} />
+<Pinned showModal={$modalStore === "pinned"} />
 {/if}
 
 {#if $modalStore === "rcolors"}

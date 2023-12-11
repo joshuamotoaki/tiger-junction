@@ -6,9 +6,10 @@ import { pinnedCourses, savedCourses } from "$lib/stores/rpool";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { toastStore } from "$lib/stores/toast";
 import StdButton from "$lib/components/elements/StdButton.svelte";
+import { getContext } from "svelte";
 
 export let showModal: boolean = false;
-export let supabase: SupabaseClient;
+let supabase: SupabaseClient = getContext("supabase");
 
 let input: string = "";
 
