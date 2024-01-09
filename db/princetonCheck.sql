@@ -4,6 +4,7 @@ CREATE OR REPLACE FUNCTION public.check_princeton_email()
 RETURNS TRIGGER AS $$
 BEGIN
 IF (split_part(new.email, '@', 2) = 'princeton.edu')
+OR (split_part(new.email, '@', 2) = 'alumni.princeton.edu')
   THEN RETURN new;
   ELSE RETURN null;
 END IF;
