@@ -5,7 +5,9 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { darkTheme } from "$lib/stores/state";
 import { modalStore } from "$lib/stores/modal";
 import { isMobile } from "$lib/stores/mobile";
-import { getContext } from "svelte";
+import { getContext, onMount } from "svelte";
+import { currentPage } from "$lib/stores/state";
+    import { fade } from "svelte/transition";
 
 let supabase: SupabaseClient = getContext("supabase");
 
@@ -16,6 +18,23 @@ const handleLogout = async () => {
 
 $: cssVarStyles = calculateCssVars("0", $calColors);
 
+let dropdownOpen = false;
+onMount(() => {
+    const handleOutsideClick = (e: MouseEvent) => {
+        if (dropdownOpen) {
+            const target = e.target as HTMLElement;
+            if (!target.closest("#dropdown")) {
+                dropdownOpen = false;
+            }
+        }
+    }
+
+    window.addEventListener("click", handleOutsideClick);
+
+    return () => {
+        window.removeEventListener("click", handleOutsideClick);
+    }
+})
 </script>
 
 <nav class="w-screen h-10 mb-2 border-b-[1px]
@@ -56,15 +75,55 @@ dark:border-zinc-700 border-zinc-200" style={cssVarStyles}>
             {/if}
             </button>
 
-            <button class="btn-circ" on:click={handleLogout}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
-                class="btn-icon">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
-                </svg>
-                {#if !$isMobile}
-                Logout
-                {/if}
-            </button>
+            <div id="app-selector" class="bg-zinc-200 dark:bg-zinc-800 text-zinc-900
+            dark:text-zinc-100 flex rounded-sm gap-2 items-center">
+                <button 
+                on:click={() => {
+                    currentPage.set("recalplus");
+                    goto("/recalplus");
+                }}>
+                    ReCal+
+                </button>
+                <button
+                on:click={() => {
+                    currentPage.set("courseGenie");
+                    goto("/coursegenie");
+                }}>
+                    CourseGenie
+                </button>
+                <button
+                on:click={() => {
+                    currentPage.set("reqtree");
+                    goto("/reqtree");
+                }}>
+                    ReqTree
+                </button>      
+                
+                <div id="dropdown" class="relative inline-block">
+                    <div class="flex items-center">
+                        <button
+                        on:click={() => {
+                            dropdownOpen = !dropdownOpen;
+                        }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                            </svg>                      
+                        </button>
+                    </div>
+                    {#if dropdownOpen}
+                        <div id="dropdownOpen" transition:fade={{ duration: 100 }}
+                        class="bg-slate-200 absolute">
+                            <button on:click={handleLogout}>
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" 
+                                class="btn-icon">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75" />
+                                </svg>
+                                Logout
+                            </button>
+                        </div>
+                    {/if}
+                </div>
+            </div>
         </div>
     </div>
 </nav>
