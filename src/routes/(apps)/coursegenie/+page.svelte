@@ -3,7 +3,6 @@ import Kanban from "./Kanban.svelte";
 import Requirements from "./Requirements.svelte";
 import Search from "./Search.svelte";
 
-
 </script>
 
 <svelte:head>
